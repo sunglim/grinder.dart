@@ -130,16 +130,17 @@ main() {
     });
 
     test('copyFile', () {
-      final String tempFileName = "copytest.txt";
+      Directory resourceDir = joinDir(Directory.current, ['resource']);
+      File source = joinFile(resourceDir, ['test.py']);
 
-      File source = joinFile(temp, ['${tempFileName}']);
-      source.writeAsStringSync('abcdABCD');
-
-      Directory targetDir = joinDir(temp, ['targetDir']);
+      //Directory targetDir = joinDir(temp, ['targetDir']);
+      Directory targetDir = joinDir(resourceDir, ['targetDir']);
       copyFile(source, targetDir);
 
-      File expectedFile = joinFile(targetDir, ['${tempFileName}']);
-      expect(expectedFile.readAsStringSync(), 'abcdABCD');
+      File expectedFile = joinFile(targetDir, [fileName(source)]);
+      expect(source.readAsStringSync(), expectedFile.readAsStringSync());
+
+      expect(source.statSync().mode, expectedFile.statSync().mode);
     });
 
     test('copyDirectory', () {
