@@ -133,8 +133,7 @@ main() {
       Directory resourceDir = joinDir(Directory.current, ['resource']);
       File source = joinFile(resourceDir, ['test.py']);
 
-      //Directory targetDir = joinDir(temp, ['targetDir']);
-      Directory targetDir = joinDir(resourceDir, ['targetDir']);
+      Directory targetDir = joinDir(temp, ['targetDir']);
       copyFile(source, targetDir);
 
       File expectedFile = joinFile(targetDir, [fileName(source)]);
