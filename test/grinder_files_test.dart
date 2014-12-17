@@ -139,8 +139,6 @@ main() {
 
       File expectedFile = joinFile(targetDir, [fileName(source)]);
       expect(source.readAsStringSync(), expectedFile.readAsStringSync());
-
-      expect(source.statSync().mode, expectedFile.statSync().mode);
     });
 
     test('copyDirectory', () {
